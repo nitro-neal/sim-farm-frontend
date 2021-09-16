@@ -1,17 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+
+import { useWallet, UseWalletProvider } from 'use-wallet'
+
+const rpcUrl = "https://rpc-mumbai.matic.today"
+const chainId = 80001
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UseWalletProvider
+      chainId={chainId}
+      connectors={{
+        walletconnect: { rpcUrl }
+      }}
+    >
+      <App />
+    </UseWalletProvider>
   </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  document.getElementById('root'),
+)
