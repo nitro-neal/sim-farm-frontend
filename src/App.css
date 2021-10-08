@@ -1,12 +1,6 @@
-
 .bg {
-  /* The image used */
   background-image: url("./greenbg.svg");
-
-  /* Full height */
   height: 100%;
-
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,4 +18,104 @@
   align-items: center;
   min-height: 400px;
   padding: 100px 20vw;
+}
+
+.title-container {
+  display: flex;
+}
+
+.title-item {
+  width: 600px;
+  height: 400px;
+  margin: auto;
+}
+
+.title {
+  font: 900 120px/1 "Source Sans Pro", Arial, sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  letter-spacing: -3px;
+  padding-top: 10%;
+}
+
+h1 {
+  text-shadow: 0 1px 0 hsl(174, 5%, 80%), 0 2px 0 hsl(174, 5%, 75%),
+    0 3px 0 hsl(174, 5%, 70%), 0 4px 0 hsl(174, 5%, 66%),
+    0 5px 0 hsl(174, 5%, 64%), 0 6px 0 hsl(174, 5%, 62%),
+    0 7px 0 hsl(174, 5%, 61%), 0 8px 0 hsl(174, 5%, 60%),
+    0 0 5px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.2),
+    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2),
+    0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.3);
+}
+
+.farm-flex-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 800px;
+  /* margin: "auto"; */
+}
+
+.farm-flex-item {
+  /* background-color: rgba(255, 0, 0, 0.3); */
+  background-color: rgba(131, 101, 57, 1);
+  /* background-image: url("https://cdna.artstation.com/p/assets/images/images/001/146/576/large/ulrick-wery-tileableset2-soil2.jpg?1441028623"); */
+  border-radius: 25px;
+  box-shadow: 10px 10px 5px grey;
+  width: 300px;
+  height: 400px;
+  margin: auto;
+}
+
+.farm-info-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.farm-info-item {
+  /* padding:10px; */
+  display: flex;
+  margin: auto;
+  width: 48%;
+  height: 100px;
+  margin-bottom: 2%;
+  /* background-color: blue; */
+}
+
+.farm-info-item p {
+  margin: auto;
+  /* color: rgb(69, 42, 122); */
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.button1:hover {
+  background-color: #4caf50;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }

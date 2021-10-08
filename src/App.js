@@ -1,6 +1,7 @@
 import React from "react";
 import { useWallet, UseWalletProvider } from "use-wallet";
 import "./App.css";
+import Home from "./views/Home"
 
 import KUTE from "kute.js";
 // Add SVG Plugin
@@ -57,7 +58,12 @@ const App = () => {
 
   return (
     <>
-      <div class="bg">
+    <div class="bg">
+      {/* <secton>hi</secton> */}
+      
+    </div>
+    <Home></Home>
+      {/* <div class="bg">
         <div>
           <img
             class="sun"
@@ -101,7 +107,7 @@ const App = () => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
