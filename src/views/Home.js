@@ -1,36 +1,34 @@
 import React, { useEffect } from "react";
 import "../App.css";
 
-// // typical import
-// import gsap from "gsap";
-
-// // or get other plugins:
-// import ScrollTrigger from "gsap/ScrollTrigger";
-// import Draggable from "gsap/Draggable";
-
-// or all tools are exported from the "all" file (excluding bonus plugins):
-import { gsap, ScrollTrigger, Draggable, MotionPathPlugin } from "gsap/all";
+// TODO: Create animations
+// import { gsap, ScrollTrigger, Draggable, MotionPathPlugin } from "gsap/all";
+// gsap.registerPlugin(ScrollTrigger, Draggable, MotionPathPlugin);
 import FarmCard from "./components/FarmCard";
 
-// don't forget to register plugins
-gsap.registerPlugin(ScrollTrigger, Draggable, MotionPathPlugin);
+const Home = (props) => {
+  // TODO: Create animations
+  // useEffect(() => {
+  //   let speed = 100;
 
-const Home = () => {
-  useEffect(() => {
-    let speed = 100;
+  //   let scene1 = gsap.timeline();
+  //   ScrollTrigger.create({
+  //     animation: scene1,
+  //     trigger: ".scrollElement",
+  //     start: "top top",
+  //     end: "45% 100%",
+  //     scrub: 3,
+  //   });
+  // });
 
-    /*  SCENE 1 */
-    let scene1 = gsap.timeline();
-    ScrollTrigger.create({
-      animation: scene1,
-      trigger: ".scrollElement",
-      start: "top top",
-      end: "45% 100%",
-      scrub: 3,
-    });
-  });
+  let farms = props.farm.farmBalances;
+  let wallet = props.wallet;
 
-  let farms = [0, 1];
+  console.log({ farms });
+
+  if (!wallet) {
+    wallet = "not connected";
+  }
   return (
     <div>
       <div class="title-container">
@@ -38,20 +36,21 @@ const Home = () => {
           <h1 class="title">Sim Farm</h1>
         </div>
       </div>
-
-      {/* <div style={{ width: "700px" }}> */}
       <div
         style={{
           marginLeft: "auto",
           marginRight: "auto",
-          // background: "green",
           width: "800px",
-          // height: "900px",
         }}
       >
         <div class="farm-flex-container">
-          {farms.map((object, i) => (
-            <FarmCard obj={object} key={i} />
+          {farms.map((farm, i) => (
+            <FarmCard
+              wallet={wallet}
+              key={i}
+              farm={farm}
+              parentFarm={props.farm}
+            />
           ))}
         </div>
       </div>

@@ -1,15 +1,12 @@
 import React from "react";
 import { useWallet, UseWalletProvider } from "use-wallet";
 import "./App.css";
-import Home from "./views/Home"
+import Home from "./views/Home";
 
-import KUTE from "kute.js";
-// Add SVG Plugin
+// TODO: Add SVG Plugin for moving sun
+// import KUTE from "kute.js";
 // require("kute.js/kute-svg");
 
-import { MASTER_CHEF_ADDRESS } from "./constants/constants";
-import MASTER_CHEF_ABI from "./constants/abis/MasterChefAbi.json";
-import multicall from "./utils/multicall";
 import { getBalanceNumber } from "./utils/util";
 import BigNumber from "bignumber.js";
 
@@ -23,8 +20,9 @@ import {
   harvest,
   approve,
   deposit,
+  withdraw,
 } from "./hooks/coininfo";
-import { GOOSE_COIN_ADDRESS } from "./constants/constants";
+import { GOOSE_COIN_ADDRESS, FARMS } from "./constants/constants";
 
 const App = () => {
   const wallet = useWallet();
@@ -56,13 +54,30 @@ const App = () => {
     </div>
   ));
 
+  let farm = {};
+  farm.blockNumber = blockNumber;
+  farm.eggPerBlock = eggPerBlock;
+  farm.totalSupply = totalSupply;
+  farm.burnedBalance = burnedBalance;
+  farm.eggPrice = eggPrice;
+  farm.tokenBalance = tokenBalance;
+  farm.farmBalances = farmBalances;
+  farm.eggSupply = eggSupply;
+  farm.marketCap = marketCap;
+  farm.approve = approve;
+  farm.deposit = deposit;
+  farm.withdraw = withdraw;
+  farm.harvest = harvest;
+
+  if (!farm.farmBalances || farm.farmBalances.length === 0) {
+    farm.farmBalances = FARMS;
+  }
+
   return (
     <>
-    <div class="bg">
-      {/* <secton>hi</secton> */}
-      
-    </div>
-    <Home></Home>
+      <div class="bg"></div>
+      <Home wallet={wallet} farm={farm}></Home>
+
       {/* <div class="bg">
         <div>
           <img
@@ -72,7 +87,6 @@ const App = () => {
             height="500"
             width="500"
           />
-
         </div>
         <div class="section">
           <h1>Wallet</h1>
@@ -96,7 +110,6 @@ const App = () => {
               <hr />
 
               <button onClick={() => wallet.reset()}>disconnect</button>
-
             </div>
           ) : (
             <div>

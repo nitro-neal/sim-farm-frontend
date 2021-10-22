@@ -100,11 +100,27 @@ export const getFarmsWithBalance = (account) => {
         params: [farm.pid, account],
       }));
 
-      const rawResults = await multicall(MasterChefAbi, calls);
+      const balanceRawResults = await multicall(MasterChefAbi, calls);
+
+      const needsApprovalCalls = FARMS.map((farm) => ({
+        address: farm.lpAddress,
+        name: "allowance",
+        params: [account, MASTER_CHEF_ADDRESS],
+      }));
+
+      const needsApprovalRawResults = await multicall(
+        GooseTokenAbi,
+        needsApprovalCalls
+      );
+
       const results = FARMS.map((farm, index) => ({
         ...farm,
-        balance: new BigNumber(rawResults[index]),
+        needsApproval: new BigNumber(needsApprovalRawResults[index]),
+        balance: new BigNumber(balanceRawResults[index]),
+        deposit: deposit,
       }));
+
+      console.log({ results });
 
       setFarmsWithBalances(results);
     };
@@ -134,6 +150,18 @@ export const deposit = async (pid, amount, wallet) => {
   // TODO: new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()
   let result = await contract.methods
     .deposit(pid, "" + amount)
+    .send({ from: wallet.account });
+
+  console.log({ result });
+};
+
+export const withdraw = async (pid, amount, wallet) => {
+  const web3 = new Web3(wallet.ethereum);
+  const contract = new web3.eth.Contract(MasterChefAbi, MASTER_CHEF_ADDRESS);
+
+  // TODO: new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()
+  let result = await contract.methods
+    .withdraw(pid, "" + amount)
     .send({ from: wallet.account });
 
   console.log({ result });
